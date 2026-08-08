@@ -1,6 +1,7 @@
 package edu.umg.programacion2.examen01.repositorio;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -87,10 +88,19 @@ public class Biblioteca {
 	 * - Usa Map.getOrDefault(), no un HashSet auxiliar ni containsKey().
 	 * - Si el catálogo está vacío, retorna un Map vacío (no null).
 	 */
-	public Map<String, Integer> contarLibrosPorCategoria() {
-		// TODO: reemplazar esta línea por la lógica descrita arriba.
-		throw new UnsupportedOperationException("TODO: completar contarLibrosPorCategoria() en Biblioteca");
-	}
+	public Map<String, Integer> contarLibrosPorCategoria(List<Libro> libros) {
+		 if (libros == null || libros.isEmpty()) {
+		        return Collections.emptyMap(); 
+		    }
+		    Map<String, Integer> conteo = new HashMap<>();
+		    for (Libro lib : libros) {
+		        String cat = lib.getCategoria();
+		        conteo.put(cat, conteo.getOrDefault(cat, 0) + 1);
+		    }
+		    return conteo;
+	    }
+
+	
 
 	/**
 	 * PREGUNTA PRÁCTICA 2 (20 pts): completar buscarPorTituloParcial().
